@@ -8,7 +8,6 @@ import {
   Message01Icon,
   Tick01Icon,
   Clock01Icon,
-  Add01Icon,
 } from 'hugeicons-react';
 
 const tickets = [

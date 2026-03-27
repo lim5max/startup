@@ -108,12 +108,6 @@ export function Home() {
   const userName = userEmail ? userEmail.split('@')[0] : 'User';
   const displayName = userName.charAt(0).toUpperCase() + userName.slice(1);
 
-  // Empty flat chart data for no-KYC state
-  const emptyChartData = Array.from({ length: 30 }, (_, i) => ({
-    date: `Day ${i + 1}`,
-    value: 0,
-  }));
-
   return (
     <div className="space-y-3 -mx-4">
       {/* ═══ HERO CARD: header + balance + actions + chart + period ═══ */}
