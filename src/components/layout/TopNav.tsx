@@ -20,7 +20,7 @@ export function TopNav() {
                 to={to}
                 className={({ isActive }) =>
                   `text-sm transition-colors ${
-                    isActive ? 'text-accent font-medium' : 'text-text-muted hover:text-text-secondary'
+                    isActive ? 'text-text-primary font-medium' : 'text-text-muted hover:text-text-secondary'
                   }`
                 }
               >

@@ -49,7 +49,7 @@ export function Profile() {
           </div>
           <div>
             <p className="text-sm font-medium text-text-primary">{userEmail || 'demo@nexus.io'}</p>
-            <p className="text-xs text-text-muted">Member since January 2025</p>
+            <p className="text-sm text-text-muted">Member since January 2025</p>
           </div>
         </div>
       </Card>
@@ -71,14 +71,14 @@ export function Profile() {
           {!kycCompleted ? (
             <button
               onClick={() => navigate('/kyc')}
-              className="text-xs font-medium text-accent hover:text-accent-hover transition-colors cursor-pointer"
+              className="text-sm font-medium text-accent hover:text-accent-hover transition-colors cursor-pointer"
             >
               Complete
             </button>
           ) : (
             <button
               onClick={resetKYC}
-              className="text-[10px] text-text-muted hover:text-danger transition-colors cursor-pointer px-2 py-1 border border-card-border rounded-card"
+              className="text-sm text-text-muted hover:text-danger transition-colors cursor-pointer px-2 py-1 border border-card-border rounded-card"
             >
               Reset KYC
             </button>
@@ -120,7 +120,7 @@ export function Profile() {
         <Delete01Icon size={20} className="text-text-muted" />
         <div className="text-left">
           <span className="text-sm text-text-muted">Reset All Data</span>
-          <p className="text-[10px] text-text-muted">Dev: clear localStorage & restart</p>
+          <p className="text-sm text-text-muted">Dev: clear localStorage & restart</p>
         </div>
       </button>
     </div>

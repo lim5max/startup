@@ -16,8 +16,8 @@ interface ChartProps {
 function CustomTooltip({ active, payload, label }: any) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-[#18181B] border border-[#27272A] rounded-[10px] px-3 py-2 text-xs shadow-xl">
-      <p className="text-text-muted text-[10px]">{label}</p>
+    <div className="bg-[#18181B] border border-[#27272A] rounded-[10px] px-3 py-2 text-sm shadow-xl">
+      <p className="text-text-muted text-sm">{label}</p>
       <p className="text-text-primary font-semibold">${payload[0].value.toLocaleString()}</p>
     </div>
   );
@@ -74,8 +74,8 @@ export function Chart({
       {showLabel && data.length > 0 && (
         <div className="absolute right-3 top-1 z-10 pointer-events-none">
           <div
-            className="px-2 py-0.5 rounded-[8px] text-[10px] font-bold"
-            style={{ backgroundColor: color, color: '#111113' }}
+            className="px-2 py-0.5 rounded-[8px] text-sm font-bold"
+            style={{ backgroundColor: color, color: '#FFFFFF' }}
           >
             {formatted}
           </div>

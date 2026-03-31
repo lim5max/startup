@@ -7,13 +7,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export function Input({ label, error, className = '', ...props }: InputProps) {
   return (
-    <div className="flex flex-col gap-1.5">
-      {label && <label className="text-sm text-text-secondary">{label}</label>}
+    <div className="flex flex-col gap-2">
+      {label && <label className="text-sm font-medium text-text-secondary pl-1">{label}</label>}
       <input
-        className={`bg-input-bg border border-input-border rounded-input px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-accent transition-colors ${error ? 'border-danger' : ''} ${className}`}
+        className={`bg-input-bg border border-input-border rounded-input px-4 py-3.5 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-accent transition-colors min-h-11 ${error ? 'border-danger' : ''} ${className}`}
         {...props}
       />
-      {error && <span className="text-xs text-danger">{error}</span>}
+      {error && <span className="text-sm text-danger pl-1">{error}</span>}
     </div>
   );
 }

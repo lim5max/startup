@@ -45,21 +45,21 @@ export function Strategies() {
                         {s.riskLevel}
                       </Badge>
                     </div>
-                    <p className="text-xs text-text-muted mb-2">{s.pair} · {s.term}</p>
+                    <p className="text-sm text-text-muted mb-2">{s.pair} · {s.term}</p>
                     <div className="flex items-center gap-4">
                       <div>
-                        <p className="text-xs text-text-muted">Return</p>
+                        <p className="text-sm text-text-tertiary">Return</p>
                         <p className="text-sm font-semibold text-positive">{s.returnRange}/mo</p>
                       </div>
                       <div>
-                        <p className="text-xs text-text-muted">Min deposit</p>
+                        <p className="text-sm text-text-tertiary">Min deposit</p>
                         <p className="text-sm font-medium text-text-primary">
                           ${s.minDeposit.toLocaleString()}
                           {s.maxDeposit ? `–$${s.maxDeposit.toLocaleString()}` : '+'}
                         </p>
                       </div>
                       <div>
-                        <p className="text-xs text-text-muted">Leverage</p>
+                        <p className="text-sm text-text-tertiary">Leverage</p>
                         <p className="text-sm font-medium text-text-primary">{s.leverage}</p>
                       </div>
                     </div>

@@ -14,6 +14,7 @@ import { Profile } from './pages/profile/Profile';
 import { Settings } from './pages/profile/Settings';
 import { Support } from './pages/profile/Support';
 import { KYC } from './pages/kyc/KYC';
+import { DesignSystem } from './pages/design-system/DesignSystem';
 import type { ReactNode } from 'react';
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
@@ -39,6 +40,7 @@ function PublicRoute({ children }: { children: ReactNode }) {
 const router = createBrowserRouter([
   { path: '/login', element: <PublicRoute><Login /></PublicRoute> },
   { path: '/register', element: <PublicRoute><Register /></PublicRoute> },
+  { path: '/design-system', element: <DesignSystem /> },
   { path: '/forgot-password', element: <ForgotPassword /> },
   { path: '/reset-sent', element: <ResetSent /> },
   {

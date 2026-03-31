@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { strategies } from '../../data/strategies';
 import { useKYC } from '../../context/KYCContext';
+import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 import { Chart } from '../../components/ui/Chart';
@@ -56,12 +57,9 @@ export function StrategyDetail() {
     <div className="space-y-5">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-9 h-9 flex items-center justify-center rounded-card bg-card border border-card-border hover:border-text-muted transition-colors cursor-pointer"
-        >
+        <Button variant="secondary" size="sm" icon onClick={() => navigate(-1)}>
           <ArrowLeft01Icon size={18} />
-        </button>
+        </Button>
         <div className="flex items-center gap-2.5">
           <div
             className="w-9 h-9 rounded-[12px] flex items-center justify-center"
@@ -81,7 +79,7 @@ export function StrategyDetail() {
         <div className="flex items-baseline justify-between mb-3">
           <div>
             <p className="text-sm font-medium text-text-primary mb-0.5">Monthly Performance</p>
-            <p className="text-xs text-text-muted">Last 12 months returns</p>
+            <p className="text-sm text-text-muted">Last 12 months returns</p>
           </div>
           <span className="text-lg font-bold text-positive tabular-nums">+{strategy.monthlyReturns[strategy.monthlyReturns.length - 1].value}%</span>
         </div>
@@ -99,7 +97,7 @@ export function StrategyDetail() {
         <div className="space-y-3">
           {params.map(({ label, value }) => (
             <div key={label} className="flex items-center justify-between">
-              <span className="text-xs text-text-muted">{label}</span>
+              <span className="text-sm text-text-muted">{label}</span>
               <span className="text-sm font-medium text-text-primary">{value}</span>
             </div>
           ))}
@@ -107,12 +105,12 @@ export function StrategyDetail() {
       </Card>
 
       {/* CTA */}
-      <button
+      <Button
         onClick={() => kycCompleted ? navigate(`/deposit?strategy=${strategy.id}`) : navigate('/kyc')}
-        className="w-full bg-accent hover:bg-accent-hover text-bg font-semibold py-3.5 rounded-button text-sm transition-colors cursor-pointer"
+        className="w-full"
       >
         {kycCompleted ? `Invest in ${strategy.name}` : 'Complete KYC to Invest'}
-      </button>
+      </Button>
     </div>
   );
 }

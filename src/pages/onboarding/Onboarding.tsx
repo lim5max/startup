@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { Button } from '../../components/ui/Button';
 import { ChartLineData02Icon, Shield01Icon, Wallet01Icon, RocketIcon } from 'hugeicons-react';
 
 const slides = [
@@ -44,9 +45,9 @@ export function Onboarding() {
     <div className="min-h-dvh flex flex-col bg-bg px-4 relative overflow-hidden">
       {/* Skip */}
       <div className="flex justify-end pt-4 max-w-[390px] mx-auto w-full">
-        <button onClick={finish} className="text-sm text-text-secondary hover:text-text-primary transition-colors cursor-pointer py-2 px-3">
+        <Button variant="ghost" size="sm" onClick={finish}>
           Skip
-        </button>
+        </Button>
       </div>
 
       {/* Content */}
@@ -78,12 +79,9 @@ export function Onboarding() {
           ))}
         </div>
 
-        <button
-          onClick={() => isLast ? finish() : setStep(step + 1)}
-          className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-3.5 rounded-button text-sm transition-colors cursor-pointer"
-        >
+        <Button onClick={() => isLast ? finish() : setStep(step + 1)} className="w-full">
           {isLast ? 'Get Started' : 'Next'}
-        </button>
+        </Button>
       </div>
     </div>
   );

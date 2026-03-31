@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import {
   ArrowLeft01Icon,
@@ -47,12 +48,9 @@ export function Support() {
       {/* Header */}
       <div className="flex items-center gap-3">
         {isNested && (
-          <button
-            onClick={() => navigate(-1)}
-            className="w-9 h-9 flex items-center justify-center rounded-card bg-card border border-card-border hover:border-text-muted transition-colors cursor-pointer"
-          >
+          <Button variant="secondary" size="sm" icon onClick={() => navigate(-1)}>
             <ArrowLeft01Icon size={18} />
-          </button>
+          </Button>
         )}
         <h1 className="text-xl font-bold tracking-[-0.03em]">Support</h1>
       </div>
@@ -64,7 +62,7 @@ export function Support() {
         </div>
         <div className="text-left">
           <p className="text-sm font-medium text-text-primary">Start a new conversation</p>
-          <p className="text-xs text-text-muted">We usually reply within a few hours</p>
+          <p className="text-sm text-text-muted">We usually reply within a few hours</p>
         </div>
       </button>
 
@@ -96,13 +94,13 @@ export function Support() {
                   ) : (
                     <Clock01Icon size={12} className="text-warning" />
                   )}
-                  <span className={`text-[10px] font-medium ${ticket.status === 'resolved' ? 'text-positive' : 'text-warning'}`}>
+                  <span className={`text-sm font-medium ${ticket.status === 'resolved' ? 'text-positive' : 'text-warning'}`}>
                     {ticket.status === 'resolved' ? 'Resolved' : 'Open'}
                   </span>
                 </div>
               </div>
-              <p className="text-xs text-text-muted line-clamp-1 mb-1.5">{ticket.lastMessage}</p>
-              <p className="text-[10px] text-text-muted">{ticket.date}</p>
+              <p className="text-sm text-text-muted line-clamp-1 mb-1.5">{ticket.lastMessage}</p>
+              <p className="text-sm text-text-muted">{ticket.date}</p>
             </Card>
           ))}
         </div>
@@ -125,7 +123,7 @@ export function Support() {
                 )}
               </button>
               {openFaq === i && (
-                <p className="text-xs text-text-secondary mt-3 leading-relaxed">{faq.a}</p>
+                <p className="text-sm text-text-secondary mt-3 leading-relaxed">{faq.a}</p>
               )}
             </Card>
           ))}
@@ -134,7 +132,7 @@ export function Support() {
 
       {/* Contact */}
       <Card>
-        <p className="text-xs text-text-muted mb-2">Or reach us directly</p>
+        <p className="text-sm text-text-muted mb-2">Or reach us directly</p>
         <div className="space-y-1.5">
           <a href="mailto:support@nexus.io" className="block text-sm text-accent hover:text-accent-hover transition-colors">
             support@nexus.io

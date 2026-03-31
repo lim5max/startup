@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Button } from '../../components/ui/Button';
 import { MailOpen02Icon } from 'hugeicons-react';
 
 export function ResetSent() {
@@ -12,11 +13,10 @@ export function ResetSent() {
         <p className="text-sm text-text-muted mb-8">
           We've sent a password reset link to your email address. Follow the instructions to reset your password.
         </p>
-        <Link
-          to="/login"
-          className="inline-flex items-center justify-center w-full bg-accent hover:bg-accent-hover text-bg font-semibold py-3.5 rounded-button text-sm transition-colors"
-        >
-          Back to Login
+        <Link to="/login">
+          <Button className="w-full">
+            Back to Login
+          </Button>
         </Link>
       </div>
     </div>

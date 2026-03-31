@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/Input';
 import { ArrowLeft01Icon } from 'hugeicons-react';
 
 export function ForgotPassword() {
@@ -23,23 +25,17 @@ export function ForgotPassword() {
         <p className="text-sm text-text-muted mb-8">Enter your email and we'll send you a reset link</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-1.5">
-            <label className="text-xs text-text-secondary pl-1">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              className="w-full bg-input-bg border border-input-border rounded-input px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-accent transition-colors"
-            />
-          </div>
+          <Input
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+          />
 
-          <button
-            type="submit"
-            className="w-full bg-accent hover:bg-accent-hover text-bg font-semibold py-3.5 rounded-button text-sm transition-colors cursor-pointer"
-          >
+          <Button type="submit" className="w-full">
             Send Reset Link
-          </button>
+          </Button>
         </form>
       </div>
     </div>

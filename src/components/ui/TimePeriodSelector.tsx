@@ -14,7 +14,7 @@ export function TimePeriodSelector({ selected, onChange }: Props) {
         <button
           key={p}
           onClick={() => onChange(p)}
-          className={`px-3.5 py-1.5 text-xs font-medium rounded-[10px] transition-all cursor-pointer ${
+          className={`px-3.5 py-1.5 text-sm font-medium rounded-[10px] transition-all cursor-pointer ${
             selected === p
               ? 'bg-accent text-white'
               : 'text-text-muted hover:text-text-secondary'

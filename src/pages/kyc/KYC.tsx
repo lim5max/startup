@@ -26,7 +26,6 @@ export function KYC() {
 
   const handleVerify = () => {
     setVerifying(true);
-    // Simulate external service redirect + completion
     setTimeout(() => {
       completeKYC();
       setVerifying(false);
@@ -38,12 +37,9 @@ export function KYC() {
     <div className="space-y-5">
       {/* Header */}
       <div className="flex items-center gap-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="w-9 h-9 flex items-center justify-center rounded-card bg-card border border-card-border hover:border-text-muted transition-colors cursor-pointer"
-        >
+        <Button variant="secondary" size="sm" icon onClick={() => navigate(-1)}>
           <ArrowLeft01Icon size={18} />
-        </button>
+        </Button>
         <h1 className="text-lg font-bold tracking-[-0.03em]">KYC Verification</h1>
       </div>
 
@@ -68,7 +64,7 @@ export function KYC() {
           ].map(({ step, text }) => (
             <div key={step} className="flex items-start gap-3">
               <div className="w-6 h-6 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-xs font-bold text-accent">{step}</span>
+                <span className="text-sm font-bold text-accent">{step}</span>
               </div>
               <p className="text-sm text-text-secondary">{text}</p>
             </div>
@@ -79,17 +75,17 @@ export function KYC() {
       <Card className="bg-card-border/20">
         <div className="flex items-start gap-2.5">
           <LinkSquare01Icon size={16} className="text-text-muted shrink-0 mt-0.5" />
-          <p className="text-xs text-text-muted leading-relaxed">
+          <p className="text-sm text-text-muted leading-relaxed">
             Your data is securely processed by our verification partner. We do not store your documents on our servers.
           </p>
         </div>
       </Card>
 
       {/* CTA */}
-      <Button fullWidth onClick={handleVerify} disabled={verifying}>
+      <Button className="w-full" onClick={handleVerify} disabled={verifying}>
         {verifying ? (
           <span className="flex items-center gap-2">
-            <span className="w-4 h-4 border-2 border-bg/30 border-t-bg rounded-full animate-spin" />
+            <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             Verifying...
           </span>
         ) : (

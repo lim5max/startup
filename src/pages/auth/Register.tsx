@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/Input';
 import { ViewIcon, ViewOffIcon } from 'hugeicons-react';
 
 export function Register() {
@@ -28,55 +30,49 @@ export function Register() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-1.5">
-            <label className="text-xs text-text-secondary pl-1">Email</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
-              className="w-full bg-input-bg border border-input-border rounded-input px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-accent transition-colors"
-            />
-          </div>
+          <Input
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+          />
 
-          <div className="space-y-1.5">
-            <label className="text-xs text-text-secondary pl-1">Password</label>
+          <div className="flex flex-col gap-2">
+            <label className="text-sm font-medium text-text-secondary pl-1">Password</label>
             <div className="relative">
               <input
                 type={showPass ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Create password"
-                className="w-full bg-input-bg border border-input-border rounded-input px-4 py-3 pr-11 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-accent transition-colors"
+                className="w-full bg-input-bg border border-input-border rounded-input px-4 py-3.5 pr-12 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-accent transition-colors min-h-11"
               />
-              <button
+              <Button
                 type="button"
+                variant="ghost"
+                size="sm"
+                icon
                 onClick={() => setShowPass(!showPass)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-secondary transition-colors cursor-pointer"
+                className="absolute right-1 top-1/2 -translate-y-1/2"
               >
                 {showPass ? <ViewOffIcon size={18} /> : <ViewIcon size={18} />}
-              </button>
+              </Button>
             </div>
           </div>
 
-          <div className="space-y-1.5">
-            <label className="text-xs text-text-secondary pl-1">Confirm Password</label>
-            <input
-              type="password"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              placeholder="Repeat password"
-              className="w-full bg-input-bg border border-input-border rounded-input px-4 py-3 text-sm text-text-primary placeholder:text-text-muted outline-none focus:border-accent transition-colors"
-            />
-          </div>
+          <Input
+            label="Confirm Password"
+            type="password"
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            placeholder="Repeat password"
+          />
 
           <div className="pt-2">
-            <button
-              type="submit"
-              className="w-full bg-accent hover:bg-accent-hover text-bg font-semibold py-3.5 rounded-button text-sm transition-colors cursor-pointer"
-            >
+            <Button type="submit" className="w-full">
               Create Account
-            </button>
+            </Button>
           </div>
         </form>
 

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useKYC } from '../../context/KYCContext';
 import { walletBalance } from '../../data/portfolio';
+import { Button } from '../../components/ui/Button';
 import { Card } from '../../components/ui/Card';
 import {
   ArrowLeft01Icon,
@@ -41,9 +42,9 @@ export function Deposit() {
         </div>
         <h2 className="text-lg font-bold tracking-[-0.03em] mb-2">KYC Required</h2>
         <p className="text-sm text-text-muted text-center mb-6 max-w-[280px]">Complete identity verification before making deposits</p>
-        <button onClick={() => navigate('/kyc')} className="bg-accent hover:bg-accent-hover text-white font-semibold px-6 py-3 rounded-button text-sm transition-colors cursor-pointer">
+        <Button onClick={() => navigate('/kyc')}>
           Complete KYC
-        </button>
+        </Button>
       </div>
     );
   }
@@ -57,7 +58,6 @@ export function Deposit() {
   };
 
   const handleAmountChange = (val: string) => {
-    // Only allow digits and one dot
     const cleaned = val.replace(/[^0-9.]/g, '');
     const parts = cleaned.split('.');
     if (parts.length > 2) return;
@@ -66,8 +66,6 @@ export function Deposit() {
   };
 
   const displayAmount = amount || '0';
-
-  // Dynamic font size based on length
   const fontSize = displayAmount.length > 8 ? 'text-4xl' : displayAmount.length > 5 ? 'text-5xl' : 'text-6xl';
 
   return (
@@ -75,23 +73,17 @@ export function Deposit() {
       {/* STEP 1: Amount */}
       {step === 1 && (
         <div className="flex flex-col flex-1">
-          {/* Header */}
           <div className="flex items-center gap-3 mb-2">
-            <button
-              onClick={() => navigate(-1)}
-              className="w-9 h-9 flex items-center justify-center rounded-card bg-card border border-card-border hover:border-text-muted transition-colors cursor-pointer"
-            >
+            <Button variant="secondary" size="sm" icon onClick={() => navigate(-1)}>
               <ArrowLeft01Icon size={18} />
-            </button>
+            </Button>
             <h1 className="text-lg font-bold tracking-[-0.03em]">Deposit</h1>
           </div>
 
-          {/* Balance */}
-          <p className="text-center text-xs text-text-muted mt-4">
+          <p className="text-center text-sm text-text-muted mt-4">
             Current balance: <span className="text-text-secondary">${walletBalance.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
           </p>
 
-          {/* Amount display — tap anywhere to type */}
           <div
             className="flex-1 flex flex-col items-center justify-center -mt-4 cursor-text"
             onClick={() => inputRef.current?.focus()}
@@ -105,10 +97,8 @@ export function Deposit() {
                   Number(displayAmount).toLocaleString('en-US', { maximumFractionDigits: 2 })
                 )}
               </span>
-              {/* Blinking cursor */}
               <span className="w-[3px] h-[0.8em] bg-accent rounded-full animate-pulse ml-1 self-center" />
             </div>
-            {/* Real input positioned behind the display */}
             <input
               ref={inputRef}
               type="text"
@@ -120,31 +110,27 @@ export function Deposit() {
             />
           </div>
 
-          {/* Quick amounts */}
           <div className="flex flex-wrap justify-center gap-2 mb-6">
             {QUICK_AMOUNTS.map((a) => (
-              <button
+              <Button
                 key={a}
+                variant="secondary"
+                size="sm"
                 onClick={() => setAmount(String(a))}
-                className={`px-4 py-2 rounded-button text-sm font-medium border transition-colors cursor-pointer ${
-                  amount === String(a)
-                    ? 'border-accent bg-accent/10 text-accent'
-                    : 'border-card-border bg-card text-text-secondary hover:border-text-muted'
-                }`}
+                className={amount === String(a) ? '!border-accent !bg-accent/10 !text-accent' : ''}
               >
                 ${a.toLocaleString()}
-              </button>
+              </Button>
             ))}
           </div>
 
-          {/* Continue */}
-          <button
+          <Button
             onClick={() => amount && Number(amount) > 0 ? setStep(2) : null}
             disabled={!amount || Number(amount) <= 0}
-            className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-3.5 rounded-button text-sm transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+            className="w-full"
           >
             Continue
-          </button>
+          </Button>
         </div>
       )}
 
@@ -152,12 +138,9 @@ export function Deposit() {
       {step === 2 && (
         <div className="flex flex-col flex-1">
           <div className="flex items-center gap-3 mb-6">
-            <button
-              onClick={() => setStep(1)}
-              className="w-9 h-9 flex items-center justify-center rounded-card bg-card border border-card-border hover:border-text-muted transition-colors cursor-pointer"
-            >
+            <Button variant="secondary" size="sm" icon onClick={() => setStep(1)}>
               <ArrowLeft01Icon size={18} />
-            </button>
+            </Button>
             <h1 className="text-lg font-bold tracking-[-0.03em]">Payment Method</h1>
           </div>
 
@@ -179,7 +162,6 @@ export function Deposit() {
                     : 'border-card-border bg-card hover:border-text-muted'
                 }`}
               >
-                {/* Radio circle */}
                 <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
                   network === n.id ? 'border-accent' : 'border-card-border'
                 }`}>
@@ -187,23 +169,23 @@ export function Deposit() {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium text-text-primary">{n.name}</p>
-                  <p className="text-xs text-text-muted">{n.sub}</p>
+                  <p className="text-sm text-text-muted">{n.sub}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs text-text-muted">{n.fee}</p>
-                  <p className="text-xs text-text-muted">{n.time}</p>
+                  <p className="text-sm text-text-muted">{n.fee}</p>
+                  <p className="text-sm text-text-muted">{n.time}</p>
                 </div>
               </button>
             ))}
           </div>
 
-          <button
+          <Button
             onClick={() => network ? setStep(3) : null}
             disabled={!network}
-            className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-3.5 rounded-button text-sm transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed mt-6"
+            className="w-full mt-6"
           >
             Continue
-          </button>
+          </Button>
         </div>
       )}
 
@@ -211,22 +193,18 @@ export function Deposit() {
       {step === 3 && network && (
         <div className="flex flex-col flex-1">
           <div className="flex items-center gap-3 mb-6">
-            <button
-              onClick={() => setStep(2)}
-              className="w-9 h-9 flex items-center justify-center rounded-card bg-card border border-card-border hover:border-text-muted transition-colors cursor-pointer"
-            >
+            <Button variant="secondary" size="sm" icon onClick={() => setStep(2)}>
               <ArrowLeft01Icon size={18} />
-            </button>
+            </Button>
             <div>
               <h1 className="text-lg font-bold tracking-[-0.03em]">Send Payment</h1>
-              <p className="text-xs text-text-muted">${Number(amount).toLocaleString()} · {network === 'trc20' ? 'TRC-20' : 'BEP-20'}</p>
+              <p className="text-sm text-text-muted">${Number(amount).toLocaleString()} · {network === 'trc20' ? 'TRC-20' : 'BEP-20'}</p>
             </div>
           </div>
 
           {/* QR Code placeholder */}
           <div className="flex justify-center mb-5">
             <div className="w-48 h-48 rounded-card border-2 border-card-border bg-white flex items-center justify-center">
-              {/* QR placeholder grid */}
               <svg width="140" height="140" viewBox="0 0 140 140">
                 <rect x="0" y="0" width="40" height="40" rx="2" fill="#0A0A0A"/>
                 <rect x="5" y="5" width="30" height="30" rx="1" fill="white"/>
@@ -237,11 +215,9 @@ export function Deposit() {
                 <rect x="0" y="100" width="40" height="40" rx="2" fill="#0A0A0A"/>
                 <rect x="5" y="105" width="30" height="30" rx="1" fill="white"/>
                 <rect x="10" y="110" width="20" height="20" rx="1" fill="#0A0A0A"/>
-                {/* Center pattern */}
                 <rect x="50" y="50" width="40" height="40" rx="2" fill="#0A0A0A"/>
                 <rect x="55" y="55" width="30" height="30" rx="1" fill="white"/>
                 <rect x="62" y="62" width="16" height="16" rx="1" fill="#3B82F6"/>
-                {/* Scattered blocks */}
                 {[48,56,64,72,80,88].map((x) =>
                   [0,8,16,24,32,96,104,112,120,128].filter(() => Math.random() > 0.4).map((y) => (
                     <rect key={`${x}-${y}`} x={x} y={y} width="6" height="6" fill="#0A0A0A" opacity="0.7"/>
@@ -258,17 +234,14 @@ export function Deposit() {
 
           {/* Wallet Address */}
           <Card className="mb-4">
-            <p className="text-xs text-text-muted mb-2">Wallet Address</p>
+            <p className="text-sm text-text-muted mb-2">Wallet Address</p>
             <div className="flex items-center gap-2">
-              <code className="flex-1 text-xs text-text-primary bg-input-bg border border-input-border rounded-input px-3 py-2.5 overflow-hidden text-ellipsis whitespace-nowrap block">
+              <code className="flex-1 text-sm text-text-primary bg-input-bg border border-input-border rounded-input px-3 py-2.5 overflow-hidden text-ellipsis whitespace-nowrap block">
                 {WALLET_ADDRESSES[network]}
               </code>
-              <button
-                onClick={copyAddress}
-                className="shrink-0 w-10 h-10 flex items-center justify-center rounded-card bg-card border border-card-border hover:border-text-muted transition-colors cursor-pointer"
-              >
+              <Button variant="secondary" size="sm" icon onClick={copyAddress}>
                 {copied ? <Tick01Icon size={16} className="text-accent" /> : <Copy01Icon size={16} />}
-              </button>
+              </Button>
             </div>
           </Card>
 
@@ -276,7 +249,7 @@ export function Deposit() {
           <div className="flex items-start gap-2.5 p-3 rounded-card bg-warning/[0.04] border border-warning/20 mb-6">
             <InformationCircleIcon size={16} className="text-warning shrink-0 mt-0.5" />
             <div>
-              <p className="text-xs text-text-secondary leading-relaxed">
+              <p className="text-sm text-text-secondary leading-relaxed">
                 Send exactly <span className="font-semibold text-text-primary">${Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span> USDT to this address.
                 Transactions may take 10–30 minutes to confirm on the network.
               </p>
@@ -284,12 +257,9 @@ export function Deposit() {
           </div>
 
           <div className="mt-auto">
-            <button
-              onClick={() => setStep(4)}
-              className="w-full bg-accent hover:bg-accent-hover text-white font-semibold py-3.5 rounded-button text-sm transition-colors cursor-pointer"
-            >
+            <Button onClick={() => setStep(4)} className="w-full">
               I've Sent the Payment
-            </button>
+            </Button>
           </div>
         </div>
       )}
@@ -297,7 +267,6 @@ export function Deposit() {
       {/* STEP 4: Processing */}
       {step === 4 && (
         <div className="flex-1 flex flex-col items-center justify-center">
-          {/* Animated pulse rings */}
           <div className="relative w-20 h-20 mb-8">
             <div className="absolute inset-0 rounded-full bg-accent/20 animate-ping" style={{ animationDuration: '2s' }} />
             <div className="absolute inset-2 rounded-full bg-accent/15 animate-ping" style={{ animationDuration: '2s', animationDelay: '0.3s' }} />
@@ -310,16 +279,13 @@ export function Deposit() {
           <p className="text-sm text-text-muted text-center max-w-[280px] leading-relaxed mb-2">
             We're confirming your transaction on the blockchain. This usually takes a few minutes.
           </p>
-          <p className="text-xs text-text-muted mb-10">
+          <p className="text-sm text-text-muted mb-10">
             ${Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2 })} · {network === 'trc20' ? 'TRC-20' : 'BEP-20'}
           </p>
 
-          <button
-            onClick={() => navigate('/home')}
-            className="text-sm text-text-muted hover:text-text-secondary transition-colors cursor-pointer border border-card-border hover:border-text-muted px-6 py-3 rounded-button"
-          >
+          <Button variant="secondary" onClick={() => navigate('/home')}>
             Back to Home
-          </button>
+          </Button>
         </div>
       )}
     </div>

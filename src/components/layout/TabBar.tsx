@@ -23,7 +23,7 @@ export function TabBar() {
             }
           >
             <Icon size={22} strokeWidth={1.5} />
-            <span className="text-[10px] font-medium">{label}</span>
+            <span className="text-sm font-medium">{label}</span>
           </NavLink>
         ))}
       </div>
